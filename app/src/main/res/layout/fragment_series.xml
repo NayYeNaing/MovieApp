@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeriesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <com.google.android.gms.ads.AdView
+               xmlns:ads="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/adView"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               ads:adSize="SMART_BANNER"
+               ads:adUnitId="@string/adbannerid">
+           </com.google.android.gms.ads.AdView>
+
+           <ViewFlipper
+               android:layout_below="@id/adView"
+               android:id="@+id/viewFlip"
+               android:layout_width="match_parent"
+               android:layout_height="200dp"/>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/Srv"
+               android:layout_below="@id/viewFlip"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+
+           <com.google.android.gms.ads.AdView
+               android:layout_below="@id/Srv"
+               xmlns:ads="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/adView2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:layout_alignParentBottom="true"
+               ads:adSize="SMART_BANNER"
+               ads:adUnitId="@string/adbannerid">
+           </com.google.android.gms.ads.AdView>
+
+       </RelativeLayout>
+
+   </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

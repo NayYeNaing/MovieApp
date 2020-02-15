@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <com.google.android.gms.ads.AdView
+              xmlns:ads="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/adView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              ads:adSize="SMART_BANNER"
+              ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+          </com.google.android.gms.ads.AdView>
+
+          <recycler.coverflow.RecyclerCoverFlow
+              android:id="@+id/RcoverFlow"
+              android:layout_below="@id/adView"
+              android:layout_width="match_parent"
+              android:layout_height="200dp">
+          </recycler.coverflow.RecyclerCoverFlow>
+
+          <TextView
+              android:id="@+id/newmoviestv"
+              android:layout_below="@id/RcoverFlow"
+              android:textStyle="bold"
+              android:textColor="@color/onPrimary"
+              android:layout_marginLeft="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:text="New Movies"
+              android:textSize="15dp"/>
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rvMovie"
+              android:layout_below="@id/newmoviestv"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+
+          <TextView
+              android:id="@+id/hotmoviestv"
+              android:layout_below="@id/rvMovie"
+              android:textStyle="bold"
+              android:textColor="@color/onPrimary"
+              android:layout_marginLeft="10dp"
+              android:layout_marginTop="5dp"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:text="Hot Movies"
+              android:textSize="15dp"/>
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rvHotMovie"
+              android:layout_below="@id/hotmoviestv"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+
+          <TextView
+              android:id="@+id/allmoviestv"
+              android:layout_below="@id/rvHotMovie"
+              android:textStyle="bold"
+              android:textColor="@color/onPrimary"
+              android:layout_marginLeft="10dp"
+              android:layout_marginTop="5dp"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:text="All Movies"
+              android:textSize="15dp"/>
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rvAllMovie"
+              android:layout_below="@id/allmoviestv"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+
+          <com.google.android.gms.ads.AdView
+              android:layout_below="@id/rvAllMovie"
+              xmlns:ads="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/adView2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:layout_alignParentBottom="true"
+              ads:adSize="SMART_BANNER"
+              ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+          </com.google.android.gms.ads.AdView>
+
+      </RelativeLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
