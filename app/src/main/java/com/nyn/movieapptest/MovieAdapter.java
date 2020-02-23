@@ -2,6 +2,8 @@ package com.nyn.movieapptest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +61,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
         Glide.with(context)
                 .load(arrayList.get(position).movieImageLink)
                 .into(holder.imageView);
@@ -81,7 +83,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem reward) {
-                            // User earned reward.
+                            new Task().execute(arrayList.get(position).movieVideo);
                         }
 
                         @Override
@@ -109,6 +111,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             super(itemView);
             imageView = itemView.findViewById(R.id.MovieImageView);
             textView = itemView.findViewById(R.id.MovieTextView);
+        }
+    }
+
+    public class Task extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return MediaFireConnect.getFileLink(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Intent intent = new Intent(context,MovieActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            MovieActivity.url = s;
+            context.startActivity(intent);
         }
     }
 

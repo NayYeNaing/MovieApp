@@ -1,6 +1,7 @@
 package com.nyn.movieapptest;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,10 +40,8 @@ public class MovieFragment extends Fragment {
         Rcf = view.findViewById(R.id.RcoverFlow);
         FireBaseDataConnect fireBaseDataConnect = new FireBaseDataConnect(getContext());
         fireBaseDataConnect.getMovies();
-
         Ads.context = getContext();
         Ads.loadAds(view);
         return view;
     }
-
 }

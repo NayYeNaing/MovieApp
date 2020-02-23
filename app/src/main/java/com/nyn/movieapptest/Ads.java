@@ -22,4 +22,10 @@ public class Ads {
         AdRequest adRequest2 = new AdRequest.Builder().build();
         mAdView2.loadAd(adRequest2);
     }
+    public static void loadBannerAds(AdView adView){
+        MobileAds.initialize(context,context.getResources().getString(R.string.admobid));
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
     }

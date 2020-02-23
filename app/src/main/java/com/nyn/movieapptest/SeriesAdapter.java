@@ -2,6 +2,7 @@ package com.nyn.movieapptest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.SeriesHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeriesHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SeriesHolder holder, final int position) {
         Glide.with(context)
                 .load(arrayList.get(position).image)
                 .into(holder.imageView);
@@ -80,7 +81,9 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.SeriesHold
 
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem reward) {
-                            // User earned reward.
+                            Intent intent = new Intent(context,SeriesList.class);
+                            SeriesList.model = arrayList.get(position);
+                            context.startActivity(intent);
                         }
 
                         @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -49,6 +52,22 @@ public class FireBaseDataConnect {
                 MovieFragment.ALLMVRV.setLayoutManager(gridLayoutManager);
                 int index=(int)Math.floor(movieAdapter.getItemCount()/2.0);
                 MovieFragment.Rcf.scrollToPosition(index);
+            }
+        });
+    }
+
+    public void getMoviesFromSeries(String seriesName){
+        Mref.whereEqualTo("moviesSeries",seriesName).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                ArrayList<MovieModel> MMArrayList = new ArrayList<>();
+                for (DocumentSnapshot ds : queryDocumentSnapshots){
+                    MMArrayList.add(ds.toObject(MovieModel.class));
+                }
+                SeriesItemAdapter seriesItemAdapter = new SeriesItemAdapter(MMArrayList,context);
+                SeriesList.recyclerView_SeriesItem.setAdapter(seriesItemAdapter);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+                SeriesList.recyclerView_SeriesItem.setLayoutManager(linearLayoutManager);
             }
         });
     }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backgroundcolor"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"/>
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/exoplayer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/bannerAds"
+        android:layout_below="@id/relativeLayout"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_below="@id/bannerAds"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:id="@+id/MovieImageToShow"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/MovieTitleToShow"
+            android:textColor="@color/onPrimary"
+            android:layout_marginLeft="10dp"
+            android:text="Hello"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <com.google.android.ads.nativetemplates.TemplateView
+        android:id="@+id/my_template"
+        android:layout_below="@id/linearLayout"
+        app:gnt_template_type="@layout/gnt_medium_template_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
